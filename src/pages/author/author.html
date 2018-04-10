@@ -1,0 +1,51 @@
+<ion-header>
+    <app-header page="author"></app-header>
+  </ion-header>
+  
+  <ion-content>
+  
+    <ion-grid>
+      <ion-row>
+  
+        <ion-col col-12 col-md-8 col-lg-6 offset-lg-2>
+
+          <ion-list class="author" *ngIf="author">
+            <ion-list-header>Author profile</ion-list-header>
+            <ion-item>
+              <ion-avatar item-start>
+                <img [src]="author.avatar || 'https://dummyimage.com/300x300/cccccc/ffffff'">
+              </ion-avatar>
+              <h2>{{ author.name }} &middot; <a [href]="'mailto:'+ author.email">{{ author.email }}</a></h2>
+              <p>{{ author.bio }}</p>
+            </ion-item>
+          </ion-list>
+
+          <ion-list class="posts-thumbnail" *ngIf="posts">
+            <ion-list-header>Posts of me</ion-list-header>
+            <ion-item *ngFor="let item of posts" (click)="nav.go('post', {post: item, postId: item.$key})">
+              <ion-thumbnail item-start>
+                <img [src]="item.thumbnail || 'https://dummyimage.com/300x300/cccccc/ffffff'">
+              </ion-thumbnail>
+              <h2>{{ item.title }}</h2>
+              <p>{{ item.description }}</p>
+              <p>Posted on <em>{{ item.date }}</em></p>
+            </ion-item>
+          </ion-list>
+  
+        </ion-col>
+  
+        <ion-col col-12 col-md-4 col-lg-2>
+  
+          <app-sidebar></app-sidebar>
+  
+        </ion-col>
+  
+      </ion-row>
+    </ion-grid>
+  
+  
+    
+    <app-footer></app-footer>
+  
+  </ion-content>
+  

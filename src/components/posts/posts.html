@@ -1,0 +1,21 @@
+<ul class="posts">
+  <li *ngIf="!posts"><ion-spinner></ion-spinner></li>
+  <li class="post" *ngFor="let item of posts">
+    <div class="head">
+      <h1><a href="javascript:void(0)" (click)="!singular ? nav.go('post', {post: item, postId: item.$key}): return;">{{ item.title }}</a></h1>
+      <p>Posted on {{ item.date }} by <a href="javascript:void(0)" *ngFor="let author of ((item.author||{unknown: 'Unknown'}) | o2a)" (click)="nav.go('author', {authorId: author.$key, author: author})">{{ author.value }}</a></p>
+      <a href="javascript:void(0)" (click)="!singular ? nav.go('post', {post: item, postId: item.$key}): return;"><img *ngIf="item.image" [src]="item.image || 'https://dummyimage.com/1200x700/cccccc/ffffff'" [alt]="item.title"></a>
+    </div>
+    <p class="excerpt" [innerHtml]="item.description"></p>
+    <div class="content" [innerHtml]="item.content"></div>
+
+    <div class="foot">
+      <div class="categories">
+        <a href="javascript:void(0)" *ngFor="let category of item.categories | o2a" (click)="nav.go('category', {categoryId: category.$key, category: category})">{{ category.value }}</a>
+      </div>
+      <div class="tags">
+        <button ion-button outline small color="dark" *ngFor="let tag of item.tags | o2a" (click)="nav.go('tag', {tagId: tag.$key, tag: tag})">{{ tag.value }}</button>
+      </div>
+    </div>
+  </li>
+</ul>

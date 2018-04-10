@@ -1,0 +1,15 @@
+app-header {
+
+    h1 {
+        margin-top: 10px;
+        
+        span {
+            cursor: pointer;
+        }
+    }
+
+    #menu button.activated {
+        text-decoration: underline;
+    }
+
+}

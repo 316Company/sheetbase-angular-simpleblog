@@ -1,0 +1,4 @@
+<ion-list class="sidebar">
+  <ion-list-header>Categories</ion-list-header>
+  <ion-item *ngFor="let item of categories" (click)="nav.go('category', {category: item, categoryId: item.$key})">{{ item.title }}</ion-item>
+</ion-list>

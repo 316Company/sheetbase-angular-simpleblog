@@ -1,0 +1,29 @@
+<ion-header>
+  <app-header page="category"></app-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col col-12 col-md-8 col-lg-6 offset-lg-2>
+
+        <app-posts [posts]="posts"></app-posts>
+
+      </ion-col>
+
+      <ion-col col-12 col-md-4 col-lg-2>
+
+        <app-sidebar></app-sidebar>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+  
+  <app-footer></app-footer>
+
+</ion-content>

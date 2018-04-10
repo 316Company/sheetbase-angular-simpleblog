@@ -1,0 +1,44 @@
+<ion-header>
+  <app-header page="post"></app-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col col-12 col-md-8 col-xl-7 offset-xl-1>
+
+        <ion-spinner *ngIf="!post"></ion-spinner>
+
+        <app-posts [posts]="[post]" singular="true" *ngIf="post"></app-posts>
+
+        <!-- <div class="comments">
+
+        </div> -->
+        
+      </ion-col>
+
+      <ion-col col-12 col-md-4 col-xl-3>
+
+        <ion-list class="sidebar">
+          <ion-list-header>Related posts</ion-list-header>
+          <ion-item *ngFor="let item of posts" (click)="nav.go('post', {post: item, postId: item.$key})">
+            <ion-thumbnail item-start>
+              <img [src]="item.thumbnail || 'https://dummyimage.com/300x300/cccccc/ffffff'">
+            </ion-thumbnail>
+            <h2>{{ item.title }}</h2>
+            <p>Posted on {{ item.date }}</p>
+          </ion-item>
+        </ion-list>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+  <app-footer></app-footer>
+
+</ion-content>

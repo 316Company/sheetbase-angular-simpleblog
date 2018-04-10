@@ -1,0 +1,20 @@
+page-home {
+
+    .searching {
+        padding: 25px 0 20px;
+
+        ion-searchbar {
+            padding-left: 0;
+        }
+
+        .head {
+            margin: 13px 10px;
+            font-size: 1.3em;
+        }
+    }
+
+    ion-list.sidebar {
+        margin-top: 32px;
+    }
+
+}
