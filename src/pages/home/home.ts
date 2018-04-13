@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
+import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+
 import { NavProvider } from '../../providers/nav/nav';
 import { MetaProvider } from '../../providers/meta/meta';
-import { SheetbaseProvider } from '../../providers/sheetbase/sheetbase';
 
 import { HELPER } from '../../statics/helper';
 
@@ -22,8 +23,9 @@ export class HomePage {
   isSearching: boolean = false;
 
   constructor(
-    private nav: NavProvider,
     private sheetbase: SheetbaseProvider,
+    
+    private nav: NavProvider,
     private meta: MetaProvider
   ) {
 

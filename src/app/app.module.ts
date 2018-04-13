@@ -4,12 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { SheetbaseModule } from 'sheetbase-angular';
+
 import { MyApp } from './app.component';
 
 import { NavProvider } from '../providers/nav/nav';
 import { MetaProvider } from '../providers/meta/meta';
-import { SpreadsheetProvider } from '../providers/spreadsheet/spreadsheet';
-import { SheetbaseProvider } from '../providers/sheetbase/sheetbase';
+
+import { CONFIG } from '../config';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SheetbaseProvider } from '../providers/sheetbase/sheetbase';
       backButtonText: '',
       mode: 'md',
       pageTransition: 'wp-transition'
-    })
+    }),
+
+    SheetbaseModule.forRoot(CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,9 +39,7 @@ import { SheetbaseProvider } from '../providers/sheetbase/sheetbase';
     // {provide: APP_BASE_HREF, useValue: '/'},
 
     NavProvider,
-    MetaProvider,
-    SpreadsheetProvider,
-    SheetbaseProvider
+    MetaProvider
   ]
 })
 export class AppModule {}

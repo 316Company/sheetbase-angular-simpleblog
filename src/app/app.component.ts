@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SheetbaseProvider } from '../providers/sheetbase/sheetbase';
+import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,9 +13,10 @@ export class MyApp {
     private sheetbase: SheetbaseProvider
   ) {
 
-    // get all the data from Spreadsheet
+  }
+  
+  ngOnInit() {
     this.sheetbase.init();
-
   }
 
 }

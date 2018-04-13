@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
+import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+
 import { NavProvider } from '../../providers/nav/nav';
 import { MetaProvider } from '../../providers/meta/meta';
-import { SheetbaseProvider } from '../../providers/sheetbase/sheetbase';
 
 @IonicPage({
   segment: 'category/:categoryId'
@@ -22,8 +23,9 @@ export class CategoryPage {
   constructor(
     private params: NavParams,
 
-    private nav: NavProvider,
     private sheetbase: SheetbaseProvider,
+    
+    private nav: NavProvider,
     private meta: MetaProvider
   ) {
     this.categoryId = this.params.get('categoryId');
