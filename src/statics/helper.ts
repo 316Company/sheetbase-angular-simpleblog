@@ -58,6 +58,149 @@ export const HELPER =  {
 
   sort: (value: any[], key: string = '$key', order: string = 'desc') => {
     return orderBy(value, [key], [order]);
+  },
+
+  gravatar: (str) => {
+    let hash = md5(str);
+    return 'https://www.gravatar.com/avatar/'+ hash +'?d=retro&s=250';
+  },
+
+  loadExternalScript: (scriptUrl: string) => {
+    return new Promise((resolve, reject) => {
+      const scriptElement = document.createElement('script')
+      scriptElement.src = scriptUrl
+      scriptElement.onload = resolve
+      document.body.appendChild(scriptElement)
+    });
+  },
+
+  formatDate: (date): string => {
+    let monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+  
+    let day = date.getDate();
+    let monthIndex = date.getMonth();
+    let year = date.getFullYear(); 
+  
+    return monthNames[monthIndex] +' '+ day +', '+ year;
+  },
+
+
+
+  /*
+  * query params
+  *
+  *
+  */
+  getParameterByName: (name: string, url: string = null): string => {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "))
+      .replace(/\//gi, '')
+      .replace(/\?/gi, '')
+      .replace(/\&/gi, '')
+      .replace(/\#/gi, '')
+      .replace(/\!/gi, '')
+      .replace(/\*/gi, '')
+      .replace(/\$/gi, '')
+      .replace(/\@/gi, '')
+      .replace(/\%/gi, '')
+      .replace(/\^/gi, '');
+  },
+
+  setParams: (name: string, value: string) => {
+    if(!history.pushState) return;
+
+    let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?'+ name +'='+ value;
+    return window.history.pushState({path: newurl}, '', newurl);
+  },
+
+
+  /*
+  * pipes
+  *
+  *
+  */
+
+  // pipe | ago
+  relativeTime: (value: any): string => {
+    var rightNow: any = new Date();
+    var then: any = new Date(value);
+
+    var diff = rightNow - then;
+
+    var second = 1000,
+    minute = second * 60,
+    hour = minute * 60,
+    day = hour * 24;
+    // week = day * 7;
+
+    if (isNaN(diff) || diff < 0) {
+      return 'n/a'; // return blank string if unknown
+    }
+
+    if (diff < second * 2) {
+      // within 2 seconds
+      return 'now';
+    }
+
+    if (diff < minute) {
+      return Math.floor(diff / second) + ' seconds ago';
+    }
+
+    if (diff < minute * 2) {
+      return 'about 1 minute ago';
+    }
+
+    if (diff < hour) {
+      return Math.floor(diff / minute) + ' minutes ago';
+    }
+
+    if (diff < hour * 2) {
+      return 'about 1 hour ago';
+    }
+
+    if (diff < day) {
+      return  Math.floor(diff / hour) + ' hours ago';
+    }
+
+    if (diff > day && diff < day * 2) {
+      return 'yeaterday';
+    }
+
+    if (diff < day * 31) { // 365
+      return Math.floor(diff / day) + ' days ago';
+    }
+
+    else {
+      return 'months ago';
+    }
+
+  },
+
+  search: (items: any[], keyword: string, fields: string[] = null) => {
+    let find = (item, keyword) => {
+      let againstString = item.title || item.name;
+      (fields||[]).forEach(field => {
+        if(!item[field]) return;
+        if(item[field] instanceof Object) return againstString += ' // '+ (JSON.stringify(item[field])).replace(/\{/gi, '').replace(/\"\}/gi, '').replace(/\{\"/gi, '').replace(/\"\:\"/gi, ' ').replace(/\"\,\"/gi, ' ').replace(/\"/gi, ''); 
+        againstString += ' // '+ item[field];
+      });
+      againstString = againstString.toLowerCase();
+      againstString = againstString +' // '+ HELPER.dashToSpace(againstString) +' // '+ HELPER.noDash(againstString);
+      return againstString.indexOf(keyword.toLowerCase()) > -1;
+    }
+    return keyword ? (items || []).filter(item => { return find(item, HELPER.noMark(keyword)) }) : items;
   }
 
 }

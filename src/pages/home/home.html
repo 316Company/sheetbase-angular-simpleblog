@@ -10,11 +10,10 @@
       <ion-col col-12 col-md-8 col-lg-6 offset-lg-2>
         
         <div class="searching">
-          <ion-searchbar (ionInput)="search($event.target.value)"></ion-searchbar>
-          <div class="head" *ngIf="isSearching">Search results <ion-badge>{{ posts.length || 0 }}</ion-badge></div>
+          <ion-searchbar [(ngModel)]="keyword"></ion-searchbar>
         </div>
 
-        <app-posts [posts]="posts"></app-posts>
+        <app-posts [posts]="posts" [keyword]=keyword></app-posts>
 
       </ion-col>
 

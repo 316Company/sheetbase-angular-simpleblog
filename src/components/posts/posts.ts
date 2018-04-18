@@ -10,6 +10,7 @@ export class PostsComponent {
 
   @Input() singular: boolean = false;
   @Input('posts') posts: any[];
+  @Input('keyword') keyword: string;
 
   constructor(
     private nav: NavProvider

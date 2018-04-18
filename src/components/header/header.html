@@ -3,7 +3,8 @@
     <h1><span (click)="(page !== 'home') ? nav.go('home'): return;">My Blog</span></h1>
   </ion-title>
   <ion-buttons id="menu" end>
-    <button ion-button [ngClass]="{activated: page === 'about'}" (click)="(page !== 'about') ? nav.go('about'): return;">About</button>
-    <button ion-button [ngClass]="{activated: page === 'contact'}" (click)="(page !== 'contact') ? nav.go('contact'): return;">Contact</button>
+    <button ion-button (click)="nav.go('page', {pageId: 'parent-page'})">Parent Page</button>
+    <button ion-button (click)="nav.go('page', {pageId: 'sub-page'})">Sub-page</button>
+    <button ion-button (click)="nav.go('page', {pageId: 'about'})">About</button>
   </ion-buttons>
 </ion-navbar>

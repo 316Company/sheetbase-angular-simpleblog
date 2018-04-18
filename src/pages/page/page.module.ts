@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { AboutPage } from './about';
+import { PagePage } from './page';
 
 import { HeaderComponentModule } from '../../components/header/header.module';
 import { FooterComponentModule } from '../../components/footer/footer.module';
 
+import { PipesModule } from '../../pipes/pipes.module';
+
 @NgModule({
   declarations: [
-    AboutPage,
+    PagePage,
   ],
   imports: [
-    IonicPageModule.forChild(AboutPage),
+    IonicPageModule.forChild(PagePage),
 
     HeaderComponentModule,
-    FooterComponentModule
+    FooterComponentModule,
+
+    PipesModule
   ],
 })
-export class AboutPageModule {}
+export class PagePageModule {}

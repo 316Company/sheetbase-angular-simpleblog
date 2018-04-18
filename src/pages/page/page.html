@@ -1,0 +1,22 @@
+<ion-header>
+  <app-header page="page"></app-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col col-12 col-md-8 offset-md-2>
+        <h2>{{ page?.title }}</h2>
+        <article [innerHtml]="page?.content | safe"></article>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+  <app-footer></app-footer>
+
+</ion-content>

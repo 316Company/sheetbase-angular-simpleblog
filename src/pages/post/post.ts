@@ -14,7 +14,7 @@ import { MetaProvider } from '../../providers/meta/meta';
   templateUrl: 'post.html',
 })
 export class PostPage {
-
+    
   postId: string;
   post: any;
   
