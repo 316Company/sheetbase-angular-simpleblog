@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+import { DataService as DataProvider } from 'sheetbase-angular';
 
 import { NavProvider } from '../../providers/nav/nav';
 import { MetaProvider } from '../../providers/meta/meta';
@@ -21,7 +21,7 @@ export class HomePage {
   keyword: string;
 
   constructor(
-    private sheetbase: SheetbaseProvider,
+    private sheetbaseData: DataProvider,
     
     private nav: NavProvider,
     private meta: MetaProvider
@@ -37,14 +37,14 @@ export class HomePage {
 
 
   ngOnInit() {
-    this.sheetbase.get(
+    this.sheetbaseData.get(
       'posts', null, {
         orderByKey: 'id',
         order: 'desc'
       }
-    ).subscribe(posts => {
+    ).then(posts => {
       this.posts = posts;
-    });
+    }).catch(error => {return});
   }
 
 

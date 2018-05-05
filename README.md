@@ -1,9 +1,19 @@
-# sheetbase-ionic-theme-simpleblog
-A theme for Sheetbase project based on Ionic.
+# Sheetbase Theme: Ionic Simple Blog
+Simple Blog theme for Sheetbase project based on Ionic.
 
-# Instruction
+## Getting start
 
-1. Clone or download this repo.
-2. Copy the database Spreadsheet to your drive.
-4. Edit the **src/config.ts** values.
-5. Customize to whatever you want.
+Install Sheetbase CLI
+
+``$ npm install -g sheetbase-cli@latest``
+
+Start a project
+
+``$ sheetbase start <project_name> -t ionic-simpleblog``
+
+Done!
+
+Start building awesome website and app. Need help, see the docs: [https://sheetbase.net/docs](https://sheetbase.net/docs).
+
+## Support us
+[<img src="https://cloakandmeeple.files.wordpress.com/2017/06/become_a_patron_button3x.png?w=200">](https://www.patreon.com/lamnhan)

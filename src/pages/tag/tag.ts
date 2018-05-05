@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
-import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+import { DataService as DataProvider } from 'sheetbase-angular';
 
 import { NavProvider } from '../../providers/nav/nav';
 import { MetaProvider } from '../../providers/meta/meta';
@@ -23,7 +23,7 @@ export class TagPage {
   constructor(
     private params: NavParams,
 
-    private sheetbase: SheetbaseProvider,
+    private sheetbaseData: DataProvider,
     
     private nav: NavProvider,
     private meta: MetaProvider
@@ -48,18 +48,18 @@ export class TagPage {
 
   ngOnInit() {
     if(!this.tag && this.tagId) {
-      this.sheetbase.get('tags', this.tagId)
-      .subscribe(tag => {
+      this.sheetbaseData.get('tags', this.tagId)
+      .then(tag => {
         this.tag = tag;
-      });
+      }).catch(error => {return});
     }
 
-    this.sheetbase.get('posts', null, {
+    this.sheetbaseData.get('posts', null, {
       orderByKey: 'tags/'+ this.tagId,
       equalTo: '!null'
-    }).subscribe(posts => {
+    }).then(posts => {
       this.posts = posts;
-    });
+    }).catch(error => {return});
   }
 
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
-import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+import { DataService as DataProvider } from 'sheetbase-angular';
 
 import { NavProvider } from '../../providers/nav/nav';
 import { MetaProvider } from '../../providers/meta/meta';
@@ -23,7 +23,7 @@ export class AuthorPage {
   constructor(
     private params: NavParams,
 
-    private sheetbase: SheetbaseProvider,
+    private sheetbaseData: DataProvider,
     
     private nav: NavProvider,
     private meta: MetaProvider
@@ -47,18 +47,18 @@ export class AuthorPage {
 
   ngOnInit() {
     if(!this.author && this.authorId) {
-      this.sheetbase.get('authors', this.authorId)
-      .subscribe(author => {
+      this.sheetbaseData.get('authors', this.authorId)
+      .then(author => {
         this.author = author;
-      });
+      }).catch(error => {return});
     }
 
-    this.sheetbase.get('posts', null, {
+    this.sheetbaseData.get('posts', null, {
       orderByKey: 'author/'+ this.authorId,
       equalTo: '!null'
-    }).subscribe(posts => {
+    }).then(posts => {
       this.posts = posts;
-    });
+    }).catch(error => {return});
   }
 
 

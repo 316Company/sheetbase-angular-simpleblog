@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
-import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+import { DataService as DataProvider } from 'sheetbase-angular';
 
 import { NavProvider } from '../../providers/nav/nav';
 import { MetaProvider } from '../../providers/meta/meta';
@@ -23,7 +23,7 @@ export class PostPage {
   constructor(
     private params: NavParams,
 
-    private sheetbase: SheetbaseProvider,
+    private sheetbaseData: DataProvider,
 
     private nav: NavProvider,
     private meta: MetaProvider
@@ -50,35 +50,35 @@ export class PostPage {
     if(this.post) this.getRelatedPosts();
 
     if(!this.post && this.postId) {
-      this.sheetbase.get('posts', this.postId)
-      .subscribe(post => {
+      this.sheetbaseData.get('posts', this.postId)
+      .then(post => {
         this.post = post;
 
         this.getRelatedPosts();
-      });
+      }).catch(error => {return});
     }
   }
   
   getRelatedPosts() {
-    this.sheetbase.get('posts', null, {
+    this.sheetbaseData.get('posts', null, {
       orderByKey: Object.keys(this.post.tags||{})[0] ? ('tags/'+ Object.keys(this.post.tags)[0]): ('categories/'+ (Object.keys(this.post.categories||{})[0] ? Object.keys(this.post.categories)[0]: 'uncategorized')),
       equalTo: '!null',
 
       limitToFirst: 12
-    }).subscribe(posts => {
+    }).then(posts => {
       if(posts.length >= 12) return this.finalizeRelatedPosts(posts);
 
       // get recent posts
-      this.sheetbase.get('posts', null, {
+      this.sheetbaseData.get('posts', null, {
         orderByKey: 'data',
         order: 'desc',
   
         limitToFirst: 12
-      }).subscribe(recentPosts => {
+      }).then(recentPosts => {
         this.finalizeRelatedPosts((posts||[]).concat(recentPosts));
-      });
+      }).catch(error => {return});
 
-    });
+    }).catch(error => {return});
   }
 
   finalizeRelatedPosts(posts: any[]): void {    

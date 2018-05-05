@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
-import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+import { DataService as DataProvider } from 'sheetbase-angular';
 
 import { NavProvider } from '../../providers/nav/nav';
 import { MetaProvider } from '../../providers/meta/meta';
@@ -21,7 +21,7 @@ export class PagePage {
   constructor(
     private params: NavParams,
 
-    private sheetbase: SheetbaseProvider,
+    private sheetbaseData: DataProvider,
 
     private nav: NavProvider,
     private meta: MetaProvider
@@ -46,10 +46,10 @@ export class PagePage {
 
   ngOnInit() {
     if(!this.page && this.pageId) {
-      this.sheetbase.get('pages', this.pageId)
-      .subscribe(page => {
+      this.sheetbaseData.get('pages', this.pageId)
+      .then(page => {
         this.page = page;
-      });
+      }).catch(error => {return});
     }
   }
 

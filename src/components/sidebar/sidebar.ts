@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SheetbaseService as SheetbaseProvider } from 'sheetbase-angular';
+import { DataService as DataProvider } from 'sheetbase-angular';
 
 import { NavProvider } from '../../providers/nav/nav';
 
@@ -13,7 +13,7 @@ export class SidebarComponent {
   categories: any[];
 
   constructor(
-    private sheetbase: SheetbaseProvider,
+    private sheetbaseData: DataProvider,
 
     private nav: NavProvider
   ) {
@@ -21,9 +21,10 @@ export class SidebarComponent {
   }
 
   ngOnInit() {
-    this.sheetbase.get('categories').subscribe(categories => {
+    this.sheetbaseData.get('categories')
+    .then(categories => {
       this.categories = categories;
-    });
+    }).catch(error => {return});
   }
 
 }
