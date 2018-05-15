@@ -1,5 +1,5 @@
 <ul class="posts">
-  <li *ngIf="!posts"><ion-spinner></ion-spinner></li>
+  <li *ngIf="!posts" class="spinner"><ion-spinner></ion-spinner></li>
   <li class="post" *ngFor="let item of posts | filter:keyword:['id', 'description', 'date', 'author', 'categories', 'tags']">
     <div class="head">
       <h1><a href="javascript:void(0)" (click)="!singular ? nav.go('post', {post: item, postId: item.$key}): return;">{{ item.title }}</a></h1>

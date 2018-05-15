@@ -49,17 +49,17 @@ export class TagPage {
   ngOnInit() {
     if(!this.tag && this.tagId) {
       this.sheetbaseData.get('tags', this.tagId)
-      .then(tag => {
+      .subscribe(tag => {
         this.tag = tag;
-      }).catch(error => {return});
+      }, error => {return});
     }
 
     this.sheetbaseData.get('posts', null, {
       orderByKey: 'tags/'+ this.tagId,
       equalTo: '!null'
-    }).then(posts => {
+    }).subscribe(posts => {
       this.posts = posts;
-    }).catch(error => {return});
+    }, error => {return});
   }
 
 

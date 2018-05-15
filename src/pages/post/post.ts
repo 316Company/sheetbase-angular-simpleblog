@@ -51,11 +51,11 @@ export class PostPage {
 
     if(!this.post && this.postId) {
       this.sheetbaseData.get('posts', this.postId)
-      .then(post => {
+      .subscribe(post => {
         this.post = post;
-
+        
         this.getRelatedPosts();
-      }).catch(error => {return});
+      }, error => {return});
     }
   }
   
@@ -65,7 +65,7 @@ export class PostPage {
       equalTo: '!null',
 
       limitToFirst: 12
-    }).then(posts => {
+    }).subscribe(posts => {
       if(posts.length >= 12) return this.finalizeRelatedPosts(posts);
 
       // get recent posts
@@ -74,11 +74,11 @@ export class PostPage {
         order: 'desc',
   
         limitToFirst: 12
-      }).then(recentPosts => {
+      }).subscribe(recentPosts => {
         this.finalizeRelatedPosts((posts||[]).concat(recentPosts));
-      }).catch(error => {return});
+      }, error => {return});
 
-    }).catch(error => {return});
+    }, error => {return});
   }
 
   finalizeRelatedPosts(posts: any[]): void {    

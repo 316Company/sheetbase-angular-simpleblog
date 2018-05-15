@@ -42,9 +42,9 @@ export class HomePage {
         orderByKey: 'id',
         order: 'desc'
       }
-    ).then(posts => {
+    ).subscribe(posts => {
       this.posts = posts;
-    }).catch(error => {return});
+    }, error => {return});
   }
 
 

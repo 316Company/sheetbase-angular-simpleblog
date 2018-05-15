@@ -14,7 +14,7 @@ import { MetaProvider } from '../../providers/meta/meta';
   templateUrl: 'page.html',
 })
 export class PagePage {
-
+  
   pageId: string;
   page: any;
 
@@ -47,9 +47,9 @@ export class PagePage {
   ngOnInit() {
     if(!this.page && this.pageId) {
       this.sheetbaseData.get('pages', this.pageId)
-      .then(page => {
+      .subscribe(page => {
         this.page = page;
-      }).catch(error => {return});
+      }, error => {return});
     }
   }
 

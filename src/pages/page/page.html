@@ -8,8 +8,16 @@
     <ion-row>
 
       <ion-col col-12 col-md-8 offset-md-2>
-        <h2>{{ page?.title }}</h2>
-        <article [innerHtml]="page?.content | safe"></article>
+        
+        <div style="padding: 30px; text-align: center;" *ngIf="!page">
+          <ion-spinner></ion-spinner>
+        </div>
+
+        <section *ngIf="page">
+          <h2>{{ page?.title }}</h2>
+          <article [innerHtml]="page?.content | safe"></article>
+        </section>
+        
       </ion-col>
 
     </ion-row>

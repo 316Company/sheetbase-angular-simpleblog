@@ -48,17 +48,17 @@ export class AuthorPage {
   ngOnInit() {
     if(!this.author && this.authorId) {
       this.sheetbaseData.get('authors', this.authorId)
-      .then(author => {
+      .subscribe(author => {
         this.author = author;
-      }).catch(error => {return});
+      }, error => {return});
     }
 
     this.sheetbaseData.get('posts', null, {
       orderByKey: 'author/'+ this.authorId,
       equalTo: '!null'
-    }).then(posts => {
+    }).subscribe(posts => {
       this.posts = posts;
-    }).catch(error => {return});
+    }, error => {return});
   }
 
 

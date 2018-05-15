@@ -49,17 +49,17 @@ export class CategoryPage {
   ngOnInit() {
     if(!this.category && this.categoryId) {
       this.sheetbaseData.get('categories', this.categoryId)
-      .then(category => {
+      .subscribe(category => {
         this.category = category;
-      }).catch(error => {return});
+      }, error => {return});
     }
 
     this.sheetbaseData.get('posts', null, {
       orderByKey: 'categories/'+ this.categoryId,
       equalTo: '!null'
-    }).then(posts => {
+    }).subscribe(posts => {
       this.posts = posts;
-    }).catch(error => {return});
+    }, error => {return});
   }
 
 

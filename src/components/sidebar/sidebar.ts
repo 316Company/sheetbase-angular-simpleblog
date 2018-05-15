@@ -22,9 +22,9 @@ export class SidebarComponent {
 
   ngOnInit() {
     this.sheetbaseData.get('categories')
-    .then(categories => {
+    .subscribe(categories => {
       this.categories = categories;
-    }).catch(error => {return});
+    }, error => {return});
   }
 
 }
