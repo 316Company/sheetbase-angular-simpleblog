@@ -1,2 +1,2 @@
 # Sheetbase Ionic Simple Blog Theme Demo
-See demo: [https://316company.github.io/sheetbase-ionic-simpleblog/](https://316company.github.io/sheetbase-ionic-simpleblog/)
+See demo: [https://sheetbase.net/demo/simpleblog-ionic](https://sheetbase.net/demo/simpleblog-ionic)
