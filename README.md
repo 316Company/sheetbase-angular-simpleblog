@@ -10,7 +10,7 @@ Install Sheetbase CLI
 
 Start a project
 
-``$ sheetbase start <project_name> -t ionic-simpleblog``
+``$ sheetbase start <project_name> -t angular-simpleblog``
 
 Done!
 
