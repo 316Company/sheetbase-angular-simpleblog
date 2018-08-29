@@ -21,7 +21,7 @@ import { SHEETBASE_CONFIG } from '../configs/sheetbase.config';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
-      // locationStrategy: 'path',
+      locationStrategy: 'path',
       backButtonText: '',
       mode: 'md',
       pageTransition: 'wp-transition'
@@ -36,7 +36,7 @@ import { SHEETBASE_CONFIG } from '../configs/sheetbase.config';
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 
-    // {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: APP_BASE_HREF, useValue: '/'},
 
     NavProvider,
     MetaProvider
