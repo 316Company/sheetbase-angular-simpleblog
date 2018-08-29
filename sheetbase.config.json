@@ -1,0 +1,18 @@
+{
+    "name": "ionic-simpleblog",
+    "type": "ionic",
+	"driveFolder": "1c22u7pTm5GRF7QxiC8b2mcwMpmtph-Ik",
+	"configs": {
+		"frontend": {
+			"apiKey": "SUkepreTR52rAhustEju7haYak4ZUhax",
+			"backendUrl": "https://script.google.com/macros/s/AKfycbytN8fouXLx-0Yhwwpu3-uXb7fW06ec6mBQFfuslyAZZ-tQvExQ/exec"
+		},
+		"backend": {
+			"apiKey": "SUkepreTR52rAhustEju7haYak4ZUhax",
+			"databaseId": "1BkCUWPCVWr90xfOTy5bDCDDbw3fD83XNBWCna3J98JY",
+			"encryptionKey": "3raR?BrUg#dr",
+			"contentFolder": "1pyWM0NKP3KMhZI_J_UM26to3CAexgG-d"
+		}
+	},
+	"options": {}
+}
