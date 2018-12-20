@@ -1,3 +1,7 @@
+# ⛔️ DEPRECATED
+
+Please use [https://github.com/sheetbase-themes/simpleblog-angular](https://github.com/sheetbase-themes/simpleblog-angular) instead.
+
 # Sheetbase Theme: Ionic Simple Blog
 
 Simple Blog theme for Sheetbase project based on Ionic.
